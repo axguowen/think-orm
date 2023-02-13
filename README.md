@@ -19,7 +19,7 @@
 
 ## 安装
 ~~~
-composer require topthink/think-orm
+composer require axguowen/think-orm
 ~~~
 
 ## 文档
