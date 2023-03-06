@@ -73,7 +73,7 @@ class Pgsql extends PDOConnection
                     'notnull' => (bool) ('' !== $val['null']),
                     'default' => $val['default'],
                     'primary' => !empty($val['key']),
-                    'autoinc' => (0 === strpos($val['extra'], 'nextval(')),
+                    'autoinc' => (0 === strpos((string) $val['extra'], 'nextval(')),
                 ];
             }
         }
