@@ -1,6 +1,6 @@
 {
     "name": "axguowen/think-orm",
-    "description": "think orm For PHP5.6",
+    "description": "The PHP Database&ORM Framework For PHP5.6",
     "keywords": [
         "orm",
         "database"
