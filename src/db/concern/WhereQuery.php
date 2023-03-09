@@ -287,7 +287,7 @@ trait WhereQuery
      * @param string $logic 查询逻辑 and or xor
      * @return $this
      */
-    public function whereExp($field, $where, $bind = [], $logic = 'AND')
+    public function whereExp($field, $where, array $bind = [], $logic = 'AND')
     {
         $this->options['where'][$logic][] = [$field, 'EXP', new Raw($where, $bind)];
 
@@ -322,7 +322,7 @@ trait WhereQuery
      * @param string $logic 查询逻辑 and or xor
      * @return $this
      */
-    public function whereRaw($where, $bind = [], $logic = 'AND')
+    public function whereRaw($where, array $bind = [], $logic = 'AND')
     {
         $this->options['where'][$logic][] = new Raw($where, $bind);
 
@@ -336,7 +336,7 @@ trait WhereQuery
      * @param array  $bind  参数绑定
      * @return $this
      */
-    public function whereOrRaw($where, $bind = [])
+    public function whereOrRaw($where, array $bind = [])
     {
         return $this->whereRaw($where, $bind, 'OR');
     }
@@ -352,7 +352,7 @@ trait WhereQuery
      * @param bool   $strict    严格模式
      * @return $this
      */
-    protected function parseWhereExp($logic, $field, $op, $condition, $param = [], $strict = false)
+    protected function parseWhereExp($logic, $field, $op, $condition, array $param = [], $strict = false)
     {
         $logic = strtoupper($logic);
 
@@ -402,7 +402,7 @@ trait WhereQuery
      * @param array  $param     查询参数
      * @return array
      */
-    protected function parseWhereItem($logic, $field, $op, $condition, $param = [])
+    protected function parseWhereItem($logic, $field, $op, $condition, array $param = [])
     {
         if (is_array($op)) {
             // 同一字段多条件查询
@@ -452,7 +452,7 @@ trait WhereQuery
      * @param string $logic 查询逻辑 and or xor
      * @return $this
      */
-    protected function parseArrayWhereItems($field, $logic)
+    protected function parseArrayWhereItems(array $field, $logic)
     {
         $where = [];
         foreach ($field as $key => $val) {

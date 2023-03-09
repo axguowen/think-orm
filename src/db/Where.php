@@ -36,7 +36,7 @@ class Where implements ArrayAccess
      * @param  array    $where      查询条件数组
      * @param  bool     $enclose    是否增加括号
      */
-    public function __construct($where = [], $enclose = false)
+    public function __construct(array $where = [], $enclose = false)
     {
         $this->where   = $where;
         $this->enclose = $enclose;
@@ -85,7 +85,7 @@ class Where implements ArrayAccess
      * @param  array    $where     查询条件
      * @return array
      */
-    protected function parseItem($field, $where = [])
+    protected function parseItem($field, array $where = [])
     {
         $op        = $where[0];
         $condition = isset($where[1]) ? $where[1] : null;

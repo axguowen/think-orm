@@ -107,7 +107,7 @@ class BelongsToMany extends Relation
      * @return Pivot
      * @throws Exception
      */
-    protected function newPivot($data = [])
+    protected function newPivot(array $data = [])
     {
         $class = $this->pivotName ?: Pivot::class;
         $pivot = new $class($data, $this->parent, $this->middle);
@@ -126,7 +126,7 @@ class BelongsToMany extends Relation
      * @param  Closure  $closure     闭包查询条件
      * @return Collection
      */
-    public function getRelation($subRelation = [], Closure $closure = null)
+    public function getRelation(array $subRelation = [], Closure $closure = null)
     {
         if ($closure) {
             $closure($this->getClosureType($closure));
@@ -220,7 +220,7 @@ class BelongsToMany extends Relation
      * @param  array   $cache       关联缓存
      * @return void
      */
-    public function eagerlyResultSet(&$resultSet, $relation, $subRelation, Closure $closure = null, $cache = [])
+    public function eagerlyResultSet(array &$resultSet, $relation, array $subRelation, Closure $closure = null, array $cache = [])
     {
         $localKey = $this->localKey;
         $pk       = $resultSet[0]->getPk();
@@ -260,7 +260,7 @@ class BelongsToMany extends Relation
      * @param  array   $cache       关联缓存
      * @return void
      */
-    public function eagerlyResult(Model $result, $relation, $subRelation, Closure $closure = null, $cache = [])
+    public function eagerlyResult(Model $result, $relation, array $subRelation, Closure $closure = null, array $cache = [])
     {
         $pk = $result->getPk();
 
@@ -340,7 +340,7 @@ class BelongsToMany extends Relation
      * @param  array   $cache       关联缓存
      * @return array
      */
-    protected function eagerlyManyToMany($where, $subRelation = [], Closure $closure = null, $cache = [])
+    protected function eagerlyManyToMany(array $where, array $subRelation = [], Closure $closure = null, array $cache = [])
     {
         if ($closure) {
             $closure($this->getClosureType($closure));
@@ -381,7 +381,7 @@ class BelongsToMany extends Relation
      * @param  array  $condition  关联查询条件
      * @return Query
      */
-    protected function belongsToManyQuery($foreignKey, $localKey, $condition = [])
+    protected function belongsToManyQuery($foreignKey, $localKey, array $condition = [])
     {
         // 关联查询封装
         if (empty($this->baseQuery)) {
@@ -412,7 +412,7 @@ class BelongsToMany extends Relation
      * @param  array $pivot 中间表额外数据
      * @return array|Pivot
      */
-    public function save($data, $pivot = [])
+    public function save($data, array $pivot = [])
     {
         // 保存关联表/中间表数据
         return $this->attach($data, $pivot);
@@ -426,7 +426,7 @@ class BelongsToMany extends Relation
      * @param  bool     $samePivot 额外数据是否相同
      * @return array|false
      */
-    public function saveAll($dataSet, $pivot = [], $samePivot = false)
+    public function saveAll($dataSet, array $pivot = [], $samePivot = false)
     {
         $result = [];
 
@@ -451,7 +451,7 @@ class BelongsToMany extends Relation
      * @return array|Pivot
      * @throws Exception
      */
-    public function attach($data, $pivot = [])
+    public function attach($data, array $pivot = [])
     {
         if (is_array($data)) {
             if (key($data) === 0) {
@@ -561,7 +561,7 @@ class BelongsToMany extends Relation
      * @param  bool  $detaching
      * @return array
      */
-    public function sync($ids, $detaching = true)
+    public function sync(array $ids, $detaching = true)
     {
         $changes = [
             'attached' => [],

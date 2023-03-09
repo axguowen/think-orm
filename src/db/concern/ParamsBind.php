@@ -30,7 +30,7 @@ trait ParamsBind
      * @param array $value 绑定变量值
      * @return $this
      */
-    public function bind($value)
+    public function bind(array $value)
     {
         $this->bind = array_merge($this->bind, $value);
         return $this;
@@ -97,7 +97,7 @@ trait ParamsBind
      * @param array  $bind 参数绑定
      * @return void
      */
-    public function bindParams(&$sql, $bind = [])
+    public function bindParams(&$sql, array $bind = [])
     {
         foreach ($bind as $key => $value) {
             if (is_array($value)) {

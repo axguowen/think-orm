@@ -87,7 +87,7 @@ abstract class BaseQuery
      * @return mixed
      * @throws Exception
      */
-    public function __call($method, $args)
+    public function __call($method, array $args)
     {
         if (strtolower(substr($method, 0, 5)) == 'getby') {
             // 根据某个字段获取记录
@@ -213,7 +213,7 @@ abstract class BaseQuery
      * @param array $type 字段类型信息
      * @return $this
      */
-    public function setFieldType($type)
+    public function setFieldType(array $type)
     {
         $this->options['field_type'] = $type;
         return $this;
@@ -434,7 +434,7 @@ abstract class BaseQuery
      * @param array $data 数据
      * @return $this
      */
-    public function data($data)
+    public function data(array $data)
     {
         $this->options['data'] = $data;
 
@@ -881,7 +881,7 @@ abstract class BaseQuery
      * @param bool  $assoc 是否取出数组
      * @return $this
      */
-    public function json($json = [], $assoc = false)
+    public function json(array $json = [], $assoc = false)
     {
         $this->options['json']       = $json;
         $this->options['json_assoc'] = $assoc;
@@ -907,7 +907,7 @@ abstract class BaseQuery
      * @param array $options 表达式参数
      * @return $this
      */
-    protected function options($options)
+    protected function options(array $options)
     {
         $this->options = $options;
         return $this;
@@ -961,7 +961,7 @@ abstract class BaseQuery
      * @param bool  $forceInsert 是否强制insert
      * @return integer
      */
-    public function save($data = [], $forceInsert = false)
+    public function save(array $data = [], $forceInsert = false)
     {
         if ($forceInsert) {
             return $this->insert($data);
@@ -985,7 +985,7 @@ abstract class BaseQuery
      * @param boolean $getLastInsID 返回自增主键
      * @return integer|string
      */
-    public function insert($data = [], $getLastInsID = false)
+    public function insert(array $data = [], $getLastInsID = false)
     {
         if (!empty($data)) {
             $this->options['data'] = $data;
@@ -1000,7 +1000,7 @@ abstract class BaseQuery
      * @param array $data 数据
      * @return integer|string
      */
-    public function insertGetId($data)
+    public function insertGetId(array $data)
     {
         return $this->insert($data, true);
     }
@@ -1012,7 +1012,7 @@ abstract class BaseQuery
      * @param integer $limit   每次写入数据限制
      * @return integer
      */
-    public function insertAll($dataSet = [], $limit = 0)
+    public function insertAll(array $dataSet = [], $limit = 0)
     {
         if (empty($dataSet)) {
             $dataSet = isset($this->options['data']) ? $this->options['data'] : [];
@@ -1032,7 +1032,7 @@ abstract class BaseQuery
      * @param string $table  要插入的数据表名
      * @return integer
      */
-    public function selectInsert($fields, $table)
+    public function selectInsert(array $fields, $table)
     {
         return $this->connection->selectInsert($this, $fields, $table);
     }
@@ -1044,7 +1044,7 @@ abstract class BaseQuery
      * @return integer
      * @throws Exception
      */
-    public function update($data = [])
+    public function update(array $data = [])
     {
         if (!empty($data)) {
             $this->options['data'] = array_merge(isset($this->options['data']) ? $this->options['data'] : [], $data);
@@ -1305,7 +1305,7 @@ abstract class BaseQuery
      * @access protected
      * @param array $options 查询参数
      */
-    protected function getModelUpdateCondition($options)
+    protected function getModelUpdateCondition(array $options)
     {
         return isset($options['where']['AND']) ? $options['where']['AND'] : null;
     }

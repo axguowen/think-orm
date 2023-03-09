@@ -151,7 +151,7 @@ abstract class Relation
      * @param  Model $parent 父模型
      * @return mixed
      */
-    protected function resultSetBuild($resultSet, Model $parent = null)
+    protected function resultSetBuild(array $resultSet, Model $parent = null)
     {
         return (new $this->model)->toCollection($resultSet)->setParent($parent);
     }
@@ -181,7 +181,7 @@ abstract class Relation
         return $fields;
     }
 
-    protected function getQueryWhere(&$where, $relation)
+    protected function getQueryWhere(array &$where, $relation)
     {
         foreach ($where as $key => &$val) {
             if (is_string($key)) {

@@ -156,7 +156,7 @@ trait Attribute
      * @param  array $field 允许写入的字段
      * @return $this
      */
-    public function allowField($field)
+    public function allowField(array $field)
     {
         $this->field = $field;
 
@@ -169,7 +169,7 @@ trait Attribute
      * @param  array $field 只读字段
      * @return $this
      */
-    public function readOnly($field)
+    public function readOnly(array $field)
     {
         $this->readonly = $field;
 
@@ -199,7 +199,7 @@ trait Attribute
      * @param  array    $allow 允许的字段名
      * @return $this
      */
-    public function data($data, $set = false, $allow = [])
+    public function data(array $data, $set = false, array $allow = [])
     {
         // 清空数据
         $this->data = [];
@@ -238,7 +238,7 @@ trait Attribute
      * @param  bool  $set   是否需要进行数据处理
      * @return $this
      */
-    public function appendData($data, $set = false)
+    public function appendData(array $data, $set = false)
     {
         if ($set) {
             $this->setAttrs($data);
@@ -347,7 +347,7 @@ trait Attribute
      * @param  array $data  数据
      * @return void
      */
-    public function setAttrs($data)
+    public function setAttrs(array $data)
     {
         // 进行数据处理
         foreach ($data as $key => $value) {
@@ -363,7 +363,7 @@ trait Attribute
      * @param  array  $data  数据
      * @return void
      */
-    public function setAttr($name, $value, $data = [])
+    public function setAttr($name, $value, array $data = [])
     {
         $name = $this->getRealFieldName($name);
 

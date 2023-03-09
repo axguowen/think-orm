@@ -199,7 +199,7 @@ abstract class Model implements JsonSerializable, ArrayAccess, Arrayable, Jsonab
      * @param array $vars 参数
      * @return mixed
      */
-    public function invoke($method, $vars = [])
+    public function invoke($method, array $vars = [])
     {
         if (self::$invoker) {
             $call = self::$invoker;
@@ -214,7 +214,7 @@ abstract class Model implements JsonSerializable, ArrayAccess, Arrayable, Jsonab
      * @access public
      * @param array $data 数据
      */
-    public function __construct($data = [])
+    public function __construct(array $data = [])
     {
         $this->data = $data;
 
@@ -264,7 +264,7 @@ abstract class Model implements JsonSerializable, ArrayAccess, Arrayable, Jsonab
      * @param array $options    参数
      * @return Model
      */
-    public function newInstance($data = [], $where = null, $options = [])
+    public function newInstance(array $data = [], $where = null, array $options = [])
     {
         $model = new static($data);
 
@@ -523,7 +523,7 @@ abstract class Model implements JsonSerializable, ArrayAccess, Arrayable, Jsonab
      * @param string $sequence 自增序列名
      * @return bool
      */
-    public function save($data = [], $sequence = null)
+    public function save(array $data = [], $sequence = null)
     {
         // 数据对象赋值
         $this->setAttrs($data);
@@ -833,7 +833,7 @@ abstract class Model implements JsonSerializable, ArrayAccess, Arrayable, Jsonab
      * @param string $suffix     数据表后缀
      * @return static
      */
-    public static function create($data, $allowField = [], $replace = false, $suffix = '')
+    public static function create(array $data, array $allowField = [], $replace = false, $suffix = '')
     {
         $model = new static();
 
@@ -859,7 +859,7 @@ abstract class Model implements JsonSerializable, ArrayAccess, Arrayable, Jsonab
      * @param string $suffix     数据表后缀
      * @return static
      */
-    public static function update($data, $where = [], $allowField = [], $suffix = '')
+    public static function update(array $data, $where = [], array $allowField = [], $suffix = '')
     {
         $model = new static();
 
@@ -1000,7 +1000,7 @@ abstract class Model implements JsonSerializable, ArrayAccess, Arrayable, Jsonab
      * @param array $scope 不启用的全局查询范围
      * @return Query
      */
-    public static function withoutGlobalScope($scope = null)
+    public static function withoutGlobalScope(array $scope = null)
     {
         $model = new static();
 

@@ -22,7 +22,7 @@ class ModelNotFoundException extends DbException
      * @param  string $model
      * @param  array  $config
      */
-    public function __construct($message, $model = '', $config = [])
+    public function __construct($message, $model = '', array $config = [])
     {
         $this->message = $message;
         $this->model   = $model;

@@ -115,7 +115,7 @@ abstract class Connection implements ConnectionInterface
      * @access public
      * @param array $config 数据库配置数组
      */
-    public function __construct($config = [])
+    public function __construct(array $config = [])
     {
         if (!empty($config)) {
             $this->config = array_merge($this->config, $config);
@@ -305,7 +305,7 @@ abstract class Connection implements ConnectionInterface
      * @param string    $method 查询方法
      * @return CacheItem
      */
-    protected function parseCache(BaseQuery $query, $cache, $method = '')
+    protected function parseCache(BaseQuery $query, array $cache, $method = '')
     {
         list($key, $expire, $tag) = $cache;
 

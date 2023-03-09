@@ -230,7 +230,7 @@ abstract class PDOConnection extends Connection
      * @param array $config 连接信息
      * @return string
      */
-    abstract protected function parseDsn($config);
+    abstract protected function parseDsn(array $config);
 
     /**
      * 取得数据表的字段信息
@@ -254,7 +254,7 @@ abstract class PDOConnection extends Connection
      * @param array $info 字段信息
      * @return array
      */
-    public function fieldCase($info)
+    public function fieldCase(array $info)
     {
         // 字段大小写转换
         switch ($this->attrCase) {
@@ -521,7 +521,7 @@ abstract class PDOConnection extends Connection
      * @return PDO
      * @throws PDOException
      */
-    public function connect($config = [], $linkNum = 0, $autoConnection = false)
+    public function connect(array $config = [], $linkNum = 0, $autoConnection = false)
     {
         if (isset($this->links[$linkNum])) {
             return $this->links[$linkNum];
@@ -630,7 +630,7 @@ abstract class PDOConnection extends Connection
      * @return \Generator
      * @throws DbException
      */
-    public function getCursor(BaseQuery $query, $sql, $bind = [], $model = null, $condition = null)
+    public function getCursor(BaseQuery $query, $sql, array $bind = [], $model = null, $condition = null)
     {
         $this->queryPDOStatement($query, $sql, $bind);
 
@@ -653,7 +653,7 @@ abstract class PDOConnection extends Connection
      * @return array
      * @throws DbException
      */
-    public function query($sql, $bind = [], $master = false)
+    public function query($sql, array $bind = [], $master = false)
     {
         return $this->pdoQuery($this->newQuery(), $sql, $bind, $master);
     }
@@ -666,7 +666,7 @@ abstract class PDOConnection extends Connection
      * @return int
      * @throws DbException
      */
-    public function execute($sql, $bind = [])
+    public function execute($sql, array $bind = [])
     {
         return $this->pdoExecute($this->newQuery(), $sql, $bind, true);
     }
@@ -681,7 +681,7 @@ abstract class PDOConnection extends Connection
      * @return array
      * @throws DbException
      */
-    protected function pdoQuery(BaseQuery $query, $sql, $bind = [], $master = null)
+    protected function pdoQuery(BaseQuery $query, $sql, array $bind = [], $master = null)
     {
         // 分析查询表达式
         $query->parseOptions();
@@ -749,7 +749,7 @@ abstract class PDOConnection extends Connection
      * @return PDOStatement
      * @throws DbException
      */
-    public function getPDOStatement($sql, $bind = [], $master = false, $procedure = false)
+    public function getPDOStatement($sql, array $bind = [], $master = false, $procedure = false)
     {
         try {
             $this->initConnect($this->readMaster ?: $master);
@@ -813,7 +813,7 @@ abstract class PDOConnection extends Connection
      * @return int
      * @throws DbException
      */
-    protected function pdoExecute(BaseQuery $query, $sql, $bind = [], $origin = false)
+    protected function pdoExecute(BaseQuery $query, $sql, array $bind = [], $origin = false)
     {
         if ($origin) {
             $query->parseOptions();
@@ -850,7 +850,7 @@ abstract class PDOConnection extends Connection
      * @return PDOStatement
      * @throws DbException
      */
-    protected function queryPDOStatement(BaseQuery $query, $sql, $bind = [])
+    protected function queryPDOStatement(BaseQuery $query, $sql, array $bind = [])
     {
         $options   = $query->getOptions();
         $master    = !empty($options['master']) ? true : false;
@@ -976,7 +976,7 @@ abstract class PDOConnection extends Connection
      * @return integer
      * @throws \Exception
      */
-    public function insertAll(BaseQuery $query, $dataSet = [], $limit = 0)
+    public function insertAll(BaseQuery $query, array $dataSet = [], $limit = 0)
     {
         if (!is_array(reset($dataSet))) {
             return 0;
@@ -1026,7 +1026,7 @@ abstract class PDOConnection extends Connection
      * @return integer
      * @throws PDOException
      */
-    public function selectInsert(BaseQuery $query, $fields, $table)
+    public function selectInsert(BaseQuery $query, array $fields, $table)
     {
         // 分析查询表达式
         $query->parseOptions();
@@ -1272,7 +1272,7 @@ abstract class PDOConnection extends Connection
      * @param array  $bind 参数绑定列表
      * @return string
      */
-    public function getRealSql($sql, $bind = [])
+    public function getRealSql($sql, array $bind = [])
     {
         foreach ($bind as $key => $val) {
             $value = strval(is_array($val) ? $val[0] : $val);
@@ -1302,7 +1302,7 @@ abstract class PDOConnection extends Connection
      * @return void
      * @throws BindParamException
      */
-    protected function bindValue($bind = [])
+    protected function bindValue(array $bind = [])
     {
         foreach ($bind as $key => $val) {
             // 占位符
@@ -1339,7 +1339,7 @@ abstract class PDOConnection extends Connection
      * @return void
      * @throws BindParamException
      */
-    protected function bindParam($bind)
+    protected function bindParam(array $bind)
     {
         foreach ($bind as $key => $val) {
             $param = is_numeric($key) ? $key + 1 : ':' . $key;
@@ -1548,7 +1548,7 @@ abstract class PDOConnection extends Connection
      * @param array     $bind     参数绑定
      * @return bool
      */
-    public function batchQuery(BaseQuery $query, $sqlArray = [], $bind = [])
+    public function batchQuery(BaseQuery $query, array $sqlArray = [], array $bind = [])
     {
         // 自动启动事务支持
         $this->startTrans();
@@ -1782,7 +1782,7 @@ abstract class PDOConnection extends Connection
      * @throws PDOException
      * @throws \Exception
      */
-    public function transactionXa($callback, $dbs = [])
+    public function transactionXa($callback, array $dbs = [])
     {
         $xid = uniqid('xa');
 

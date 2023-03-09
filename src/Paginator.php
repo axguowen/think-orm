@@ -97,7 +97,7 @@ abstract class Paginator implements ArrayAccess, Countable, IteratorAggregate, J
      */
     protected static $maker;
 
-    public function __construct($items, $listRows, $currentPage = 1, $total = null, $simple = false, $options = [])
+    public function __construct($items, $listRows, $currentPage = 1, $total = null, $simple = false, array $options = [])
     {
         $this->options = array_merge($this->options, $options);
 
@@ -133,7 +133,7 @@ abstract class Paginator implements ArrayAccess, Countable, IteratorAggregate, J
      * @param array $options
      * @return Paginator
      */
-    public static function make($items, $listRows, $currentPage = 1, $total = null, $simple = false, $options = [])
+    public static function make($items, $listRows, $currentPage = 1, $total = null, $simple = false, array $options = [])
     {
         if (isset(static::$maker)) {
             return call_user_func(static::$maker, $items, $listRows, $currentPage, $total, $simple, $options);
@@ -332,7 +332,7 @@ abstract class Paginator implements ArrayAccess, Countable, IteratorAggregate, J
      * @param array $append
      * @return $this
      */
-    public function appends($append)
+    public function appends(array $append)
     {
         foreach ($append as $k => $v) {
             if ($k !== $this->options['var_page']) {

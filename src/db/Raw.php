@@ -37,7 +37,7 @@ class Raw
      * @param  array   $bind
      * @return void
      */
-    public function __construct($value, $bind = [])
+    public function __construct($value, array $bind = [])
     {
         $this->value = $value;
         $this->bind  = $bind;

@@ -85,7 +85,7 @@ class MorphToMany extends BelongsToMany
      * @param  array   $cache       关联缓存
      * @return void
      */
-    public function eagerlyResultSet(&$resultSet, $relation, $subRelation, Closure $closure = null, $cache = [])
+    public function eagerlyResultSet(array &$resultSet, $relation, array $subRelation, Closure $closure = null, array $cache = [])
     {
         $pk    = $resultSet[0]->getPk();
         $range = [];
@@ -125,7 +125,7 @@ class MorphToMany extends BelongsToMany
      * @param  array   $cache       关联缓存
      * @return void
      */
-    public function eagerlyResult(Model $result, $relation, $subRelation, Closure $closure = null, $cache = [])
+    public function eagerlyResult(Model $result, $relation, array $subRelation, Closure $closure = null, array $cache = [])
     {
         $pk = $result->getPk();
 
@@ -205,7 +205,7 @@ class MorphToMany extends BelongsToMany
      * @param  array  $condition  关联查询条件
      * @return Query
      */
-    protected function belongsToManyQuery($foreignKey, $localKey, $condition = [])
+    protected function belongsToManyQuery($foreignKey, $localKey, array $condition = [])
     {
         // 关联查询封装
         $tableName = $this->query->getTable();
@@ -239,7 +239,7 @@ class MorphToMany extends BelongsToMany
      * @param  array   $cache       关联缓存
      * @return array
      */
-    protected function eagerlyManyToMany($where, $subRelation = [], Closure $closure = null, $cache = [])
+    protected function eagerlyManyToMany(array $where, array $subRelation = [], Closure $closure = null, array $cache = [])
     {
         if ($closure) {
             $closure($this->getClosureType($closure));
@@ -291,7 +291,7 @@ class MorphToMany extends BelongsToMany
      * @param  array $pivot 中间表额外数据
      * @return array|Pivot
      */
-    public function attach($data, $pivot = [])
+    public function attach($data, array $pivot = [])
     {
         if (is_array($data)) {
             if (key($data) === 0) {
@@ -408,7 +408,7 @@ class MorphToMany extends BelongsToMany
      * @param  bool  $detaching
      * @return array
      */
-    public function sync($ids, $detaching = true)
+    public function sync(array $ids, $detaching = true)
     {
         $changes = [
             'attached' => [],
@@ -478,7 +478,7 @@ class MorphToMany extends BelongsToMany
      * @param  bool  $merge
      * @return array
      */
-    public static function morphMap($map = null, $merge = true)
+    public static function morphMap(array $map = null, $merge = true)
     {
         if (is_array($map)) {
             static::$morphMap = $merge && static::$morphMap

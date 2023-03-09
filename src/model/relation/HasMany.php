@@ -50,7 +50,7 @@ class HasMany extends Relation
      * @param  Closure $closure     闭包查询条件
      * @return Collection
      */
-    public function getRelation($subRelation = [], Closure $closure = null)
+    public function getRelation(array $subRelation = [], Closure $closure = null)
     {
         if ($closure) {
             $closure($this->getClosureType($closure));
@@ -73,7 +73,7 @@ class HasMany extends Relation
      * @param  array   $cache       关联缓存
      * @return void
      */
-    public function eagerlyResultSet(&$resultSet, $relation, $subRelation, Closure $closure = null, $cache = [])
+    public function eagerlyResultSet(array &$resultSet, $relation, array $subRelation, Closure $closure = null, array $cache = [])
     {
         $localKey = $this->localKey;
         $range    = [];
@@ -112,7 +112,7 @@ class HasMany extends Relation
      * @param  array   $cache       关联缓存
      * @return void
      */
-    public function eagerlyResult(Model $result, $relation, $subRelation = [], Closure $closure = null, $cache = [])
+    public function eagerlyResult(Model $result, $relation, array $subRelation = [], Closure $closure = null, array $cache = [])
     {
         $localKey = $this->localKey;
 
@@ -188,7 +188,7 @@ class HasMany extends Relation
      * @param  array   $cache       关联缓存
      * @return array
      */
-    protected function eagerlyOneToMany($where, $subRelation = [], Closure $closure = null, $cache = [])
+    protected function eagerlyOneToMany(array $where, array $subRelation = [], Closure $closure = null, array $cache = [])
     {
         $foreignKey = $this->foreignKey;
 

@@ -111,7 +111,7 @@ trait RelationShip
      * @param  array  $data  数据
      * @return $this
      */
-    public function setRelation($name, $value, $data = [])
+    public function setRelation($name, $value, array $data = [])
     {
         // 检测修改器
         $method = 'set' . Str::studly($name) . 'Attr';
@@ -132,7 +132,7 @@ trait RelationShip
      * @param  array $withRelationAttr   关联获取器
      * @return void
      */
-    public function relationQuery($relations, $withRelationAttr = [])
+    public function relationQuery(array $relations, array $withRelationAttr = [])
     {
         foreach ($relations as $key => $relation) {
             $subRelation = [];
@@ -170,7 +170,7 @@ trait RelationShip
      * @param  array $relation 关联
      * @return $this
      */
-    public function together($relation)
+    public function together(array $relation)
     {
         $this->together = $relation;
 
@@ -248,7 +248,7 @@ trait RelationShip
      * @param  mixed  $cache     关联缓存
      * @return void
      */
-    public function eagerlyResultSet(&$resultSet, $relations, $withRelationAttr = [], $join = false, $cache = false)
+    public function eagerlyResultSet(array &$resultSet, array $relations, array $withRelationAttr = [], $join = false, $cache = false)
     {
         foreach ($relations as $key => $relation) {
             $subRelation = [];
@@ -296,7 +296,7 @@ trait RelationShip
      * @param  mixed $cache     关联缓存
      * @return void
      */
-    public function eagerlyResult($relations, $withRelationAttr = [], $join = false, $cache = false)
+    public function eagerlyResult(array $relations, array $withRelationAttr = [], $join = false, $cache = false)
     {
         foreach ($relations as $key => $relation) {
             $subRelation = [];
@@ -343,7 +343,7 @@ trait RelationShip
      * @return $this
      * @throws Exception
      */
-    public function bindAttr($relation, $attrs = [])
+    public function bindAttr($relation, array $attrs = [])
     {
         $relation = $this->getRelation($relation, true);
 
@@ -371,7 +371,7 @@ trait RelationShip
      * @param  bool   $useSubQuery 子查询
      * @return void
      */
-    public function relationCount(Query $query, $relations, $aggregate = 'sum', $field = '*', $useSubQuery = true)
+    public function relationCount(Query $query, array $relations, $aggregate = 'sum', $field = '*', $useSubQuery = true)
     {
         foreach ($relations as $key => $relation) {
             $closure = $name = null;
@@ -596,7 +596,7 @@ trait RelationShip
      * @param  array        $alias 多态别名定义
      * @return MorphTo
      */
-    public function morphTo($morph = null, $alias = [])
+    public function morphTo($morph = null, array $alias = [])
     {
         $trace    = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2);
         $relation = Str::snake($trace[1]['function']);

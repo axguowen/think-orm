@@ -72,7 +72,7 @@ trait ResultOperation
      * @param array $result 查询数据
      * @return void
      */
-    protected function result(&$result)
+    protected function result(array &$result)
     {
         // JSON数据处理
         if (!empty($this->options['json'])) {
@@ -97,7 +97,7 @@ trait ResultOperation
      * @param bool  $toCollection 是否转为对象
      * @return void
      */
-    protected function resultSet(&$resultSet, $toCollection = true)
+    protected function resultSet(array &$resultSet, $toCollection = true)
     {
         foreach ($resultSet as &$result) {
             $this->result($result);
@@ -116,7 +116,7 @@ trait ResultOperation
      * @param array $withAttr 字段获取器
      * @return void
      */
-    protected function getResultAttr(&$result, $withAttr = [])
+    protected function getResultAttr(array &$result, array $withAttr = [])
     {
         foreach ($withAttr as $name => $closure) {
             $name = Str::snake($name);
@@ -168,7 +168,7 @@ trait ResultOperation
      * @param array $result 查询数据
      * @return void
      */
-    protected function jsonResult(&$result)
+    protected function jsonResult(array &$result)
     {
         foreach ($this->options['json'] as $name) {
             if (!isset($result[$name])) {

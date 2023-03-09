@@ -141,7 +141,7 @@ class Mongo extends Connection
      * @throws InvalidArgumentException
      * @throws RuntimeException
      */
-    public function connect($config = [], $linkNum = 0)
+    public function connect(array $config = [], $linkNum = 0)
     {
         if (!isset($this->links[$linkNum])) {
             if (empty($config)) {
@@ -494,7 +494,7 @@ class Mongo extends Connection
      * @param  array $data 数据
      * @return void
      */
-    protected function convertObjectID(&$data)
+    protected function convertObjectID(array &$data)
     {
         if (isset($data['_id']) && is_object($data['_id'])) {
             $data['id'] = $data['_id']->__toString();
@@ -510,7 +510,7 @@ class Mongo extends Connection
      * @param  array  $options 参数
      * @return void
      */
-    public function mongoLog($type, $data, $options = [])
+    public function mongoLog($type, $data, array $options = [])
     {
         if (!$this->config['trigger_sql']) {
             return;
@@ -783,7 +783,7 @@ class Mongo extends Connection
      * @throws RuntimeException
      * @throws BulkWriteException
      */
-    public function insertAll(BaseQuery $query, $dataSet = [])
+    public function insertAll(BaseQuery $query, array $dataSet = [])
     {
         // 分析查询表达式
         $query->parseOptions();

@@ -50,7 +50,7 @@ class BelongsTo extends OneToOne
      * @param  Closure $closure     闭包查询条件
      * @return Model
      */
-    public function getRelation($subRelation = [], Closure $closure = null)
+    public function getRelation(array $subRelation = [], Closure $closure = null)
     {
         if ($closure) {
             $closure($this->getClosureType($closure));
@@ -203,7 +203,7 @@ class BelongsTo extends OneToOne
      * @param  array   $cache       关联缓存
      * @return void
      */
-    protected function eagerlySet(&$resultSet, $relation, $subRelation = [], Closure $closure = null, $cache = [])
+    protected function eagerlySet(array &$resultSet, $relation, array $subRelation = [], Closure $closure = null, array $cache = [])
     {
         $localKey   = $this->localKey;
         $foreignKey = $this->foreignKey;
@@ -255,7 +255,7 @@ class BelongsTo extends OneToOne
      * @param  array   $cache       关联缓存
      * @return void
      */
-    protected function eagerlyOne(Model $result, $relation, $subRelation = [], Closure $closure = null, $cache = [])
+    protected function eagerlyOne(Model $result, $relation, array $subRelation = [], Closure $closure = null, array $cache = [])
     {
         $localKey   = $this->localKey;
         $foreignKey = $this->foreignKey;

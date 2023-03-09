@@ -136,7 +136,7 @@ class Fetch
      * @param  array $data 数据
      * @return string
      */
-    public function insert($data = [])
+    public function insert(array $data = [])
     {
         $options = $this->query->parseOptions();
 
@@ -155,7 +155,7 @@ class Fetch
      * @param  array $data 数据
      * @return string
      */
-    public function insertGetId($data = [])
+    public function insertGetId(array $data = [])
     {
         return $this->insert($data);
     }
@@ -167,7 +167,7 @@ class Fetch
      * @param  bool  $forceInsert 是否强制insert
      * @return string
      */
-    public function save($data = [], $forceInsert = false)
+    public function save(array $data = [], $forceInsert = false)
     {
         if ($forceInsert) {
             return $this->insert($data);
@@ -193,7 +193,7 @@ class Fetch
      * @param  integer   $limit   每次写入数据限制
      * @return string
      */
-    public function insertAll($dataSet = [], $limit = null)
+    public function insertAll(array $dataSet = [], $limit = null)
     {
         $options = $this->query->parseOptions();
 
@@ -230,7 +230,7 @@ class Fetch
      * @param  string   $table  要插入的数据表名
      * @return string
      */
-    public function selectInsert($fields, $table)
+    public function selectInsert(array $fields, $table)
     {
         $this->query->parseOptions();
 
@@ -245,7 +245,7 @@ class Fetch
      * @param  mixed $data 数据
      * @return string
      */
-    public function update($data = [])
+    public function update(array $data = [])
     {
         $options = $this->query->parseOptions();
 

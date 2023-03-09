@@ -133,7 +133,7 @@ abstract class OneToOne extends Relation
      * @param  Closure $closure
      * @return mixed
      */
-    abstract protected function eagerlySet(&$resultSet, $relation, $subRelation = [], Closure $closure = null);
+    abstract protected function eagerlySet(array &$resultSet, $relation, array $subRelation = [], Closure $closure = null);
 
     /**
      * 预载入关联查询（数据）
@@ -144,7 +144,7 @@ abstract class OneToOne extends Relation
      * @param  Closure $closure
      * @return mixed
      */
-    abstract protected function eagerlyOne(Model $result, $relation, $subRelation = [], Closure $closure = null);
+    abstract protected function eagerlyOne(Model $result, $relation, array $subRelation = [], Closure $closure = null);
 
     /**
      * 预载入关联查询（数据集）
@@ -157,7 +157,7 @@ abstract class OneToOne extends Relation
      * @param  bool    $join        是否为JOIN方式
      * @return void
      */
-    public function eagerlyResultSet(&$resultSet, $relation, $subRelation = [], Closure $closure = null, $cache = [], $join = false)
+    public function eagerlyResultSet(array &$resultSet, $relation, array $subRelation = [], Closure $closure = null, array $cache = [], $join = false)
     {
         if ($join) {
             // 模型JOIN关联组装
@@ -181,7 +181,7 @@ abstract class OneToOne extends Relation
      * @param  bool    $join        是否为JOIN方式
      * @return void
      */
-    public function eagerlyResult(Model $result, $relation, $subRelation = [], Closure $closure = null, $cache = [], $join = false)
+    public function eagerlyResult(Model $result, $relation, array $subRelation = [], Closure $closure = null, array $cache = [], $join = false)
     {
         if ($join) {
             // 模型JOIN关联组装
@@ -233,7 +233,7 @@ abstract class OneToOne extends Relation
      * @param  array $attr 要绑定的属性列表
      * @return $this
      */
-    public function bind($attr)
+    public function bind(array $attr)
     {
         $this->bindAttr = $attr;
 
@@ -324,7 +324,7 @@ abstract class OneToOne extends Relation
      * @param  array   $cache       关联缓存
      * @return array
      */
-    protected function eagerlyWhere($where, $key, $subRelation = [], Closure $closure = null, $cache = [])
+    protected function eagerlyWhere(array $where, $key, array $subRelation = [], Closure $closure = null, array $cache = [])
     {
         // 预载入关联查询 支持嵌套预载入
         if ($closure) {

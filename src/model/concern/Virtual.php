@@ -46,7 +46,7 @@ trait Virtual
      * @param string $sequence 自增序列名
      * @return bool
      */
-    public function save($data = [], $sequence = null)
+    public function save(array $data = [], $sequence = null)
     {
         // 数据对象赋值
         $this->setAttrs($data);

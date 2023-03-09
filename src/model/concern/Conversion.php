@@ -84,7 +84,7 @@ trait Conversion
      * @param  bool  $merge    是否合并
      * @return $this
      */
-    public function append($append = [], $merge = false)
+    public function append(array $append = [], $merge = false)
     {
         if ($merge) {
             $this->append = array_merge($this->append, $append);
@@ -123,7 +123,7 @@ trait Conversion
      * @return $this
      * @throws Exception
      */
-    public function appendRelationAttr($attr, $append)
+    public function appendRelationAttr($attr, array $append)
     {
         $relation = Str::camel($attr);
 
@@ -154,7 +154,7 @@ trait Conversion
      * @param  bool  $merge    是否合并
      * @return $this
      */
-    public function hidden($hidden = [], $merge = false)
+    public function hidden(array $hidden = [], $merge = false)
     {
         if ($merge) {
             $this->hidden = array_merge($this->hidden, $hidden);
@@ -172,7 +172,7 @@ trait Conversion
      * @param  bool  $merge    是否合并
      * @return $this
      */
-    public function visible($visible = [], $merge = false)
+    public function visible(array $visible = [], $merge = false)
     {
         if ($merge) {
             $this->visible = array_merge($this->visible, $visible);
@@ -189,7 +189,7 @@ trait Conversion
      * @param  array $map
      * @return $this
      */
-    public function mapping($map)
+    public function mapping(array $map)
     {
         $this->mapping = $map;
 
@@ -276,7 +276,7 @@ trait Conversion
         return $item;
     }
 
-    protected function appendAttrToArray(&$item, $key, $name, $visible, $hidden)
+    protected function appendAttrToArray(array &$item, $key, $name, array $visible, array $hidden)
     {
         if (is_array($name)) {
             // 批量追加关联对象属性
@@ -295,7 +295,7 @@ trait Conversion
         }
     }
 
-    protected function getRelationWith($key, $hidden, $visible)
+    protected function getRelationWith($key, array $hidden, array $visible)
     {
         $relation   = $this->getRelation($key, true);
         if ($relation) {
@@ -308,7 +308,7 @@ trait Conversion
         return $relation;
     }
 
-    protected function getBindAttrValue($name, $value, &$item = [])
+    protected function getBindAttrValue($name, $value, array &$item = [])
     {
         $relation = $this->isRelationAttr($name);
         if (!$relation) {

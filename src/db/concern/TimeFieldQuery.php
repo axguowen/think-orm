@@ -37,7 +37,7 @@ trait TimeFieldQuery
      * @param array $rule 时间表达式
      * @return $this
      */
-    public function timeRule($rule)
+    public function timeRule(array $rule)
     {
         $this->timeRule = array_merge($this->timeRule, $rule);
         return $this;

@@ -129,7 +129,7 @@ class Mongo extends BaseQuery
      * @param  array $groupBy 类似mysql里面的group字段, 可以传入多个字段, 如 ['field_a', 'field_b', 'field_c']
      * @return array 查询结果
      */
-    public function multiAggregate($aggregate, $groupBy)
+    public function multiAggregate(array $aggregate, array $groupBy)
     {
         $result = $this->cmd('multiAggregate', [$aggregate, $groupBy]);
 
@@ -249,7 +249,7 @@ class Mongo extends BaseQuery
      * @param array $modifiers
      * @return $this
      */
-    public function modifiers($modifiers)
+    public function modifiers(array $modifiers)
     {
         $this->options['modifiers'] = $modifiers;
         return $this;
@@ -309,7 +309,7 @@ class Mongo extends BaseQuery
      * @param array $collation
      * @return $this
      */
-    public function collation($collation)
+    public function collation(array $collation)
     {
         $this->options['collation'] = $collation;
         return $this;

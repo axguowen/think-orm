@@ -72,7 +72,7 @@ class MorphOne extends Relation
      * @param  Closure $closure     闭包查询条件
      * @return Model
      */
-    public function getRelation($subRelation = [], Closure $closure = null)
+    public function getRelation(array $subRelation = [], Closure $closure = null)
     {
         if ($closure) {
             $closure($this->getClosureType($closure));
@@ -135,7 +135,7 @@ class MorphOne extends Relation
      * @param  array   $cache       关联缓存
      * @return void
      */
-    public function eagerlyResultSet(&$resultSet, $relation, $subRelation, Closure $closure = null, $cache = [])
+    public function eagerlyResultSet(array &$resultSet, $relation, array $subRelation, Closure $closure = null, array $cache = [])
     {
         $morphType = $this->morphType;
         $morphKey  = $this->morphKey;
@@ -187,7 +187,7 @@ class MorphOne extends Relation
      * @param  array   $cache       关联缓存
      * @return void
      */
-    public function eagerlyResult(Model $result, $relation, $subRelation = [], Closure $closure = null, $cache = [])
+    public function eagerlyResult(Model $result, $relation, array $subRelation = [], Closure $closure = null, array $cache = [])
     {
         $pk = $result->getPk();
 
@@ -225,7 +225,7 @@ class MorphOne extends Relation
      * @param  array   $cache       关联缓存
      * @return array
      */
-    protected function eagerlyMorphToOne($where, $subRelation = [], $closure = null, $cache = [])
+    protected function eagerlyMorphToOne(array $where, array $subRelation = [], $closure = null, array $cache = [])
     {
         // 预载入关联查询 支持嵌套预载入
         if ($closure) {
@@ -311,7 +311,7 @@ class MorphOne extends Relation
      * @param  array $attr 要绑定的属性列表
      * @return $this
      */
-    public function bind($attr)
+    public function bind(array $attr)
     {
         $this->bindAttr = $attr;
 

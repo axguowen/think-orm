@@ -180,7 +180,7 @@ class Bootstrap extends Paginator
      * @param  array $urls
      * @return string
      */
-    protected function getUrlLinks($urls)
+    protected function getUrlLinks(array $urls)
     {
         $html = '';
 

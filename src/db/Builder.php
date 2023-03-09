@@ -106,7 +106,7 @@ abstract class Builder
      * @param  array  $parser 匹配表达式数据
      * @return $this
      */
-    public function bindParser($name, $parser)
+    public function bindParser($name, array $parser)
     {
         $this->parser[$name] = $parser;
         return $this;
@@ -121,7 +121,7 @@ abstract class Builder
      * @param  array $bind      参数绑定
      * @return array
      */
-    protected function parseData(Query $query, $data = [], $fields = [], $bind = [])
+    protected function parseData(Query $query, array $data = [], array $fields = [], array $bind = [])
     {
         if (empty($data)) {
             return [];
@@ -195,7 +195,7 @@ abstract class Builder
      * @param  array  $bind      绑定数据
      * @return string
      */
-    protected function parseDataBind(Query $query, $key, $data, $bind = [])
+    protected function parseDataBind(Query $query, $key, $data, array $bind = [])
     {
         if ($data instanceof Raw) {
             return $this->parseRaw($query, $data);
@@ -296,7 +296,7 @@ abstract class Builder
      * @param  mixed $where   查询条件
      * @return string
      */
-    protected function parseWhere(Query $query, $where)
+    protected function parseWhere(Query $query, array $where)
     {
         $options  = $query->getOptions();
         $whereStr = $this->buildWhere($query, $where);
@@ -320,7 +320,7 @@ abstract class Builder
      * @param  mixed     $where     查询条件
      * @return string
      */
-    public function buildWhere(Query $query, $where)
+    public function buildWhere(Query $query, array $where)
     {
         if (empty($where)) {
             $where = [];
@@ -348,7 +348,7 @@ abstract class Builder
      * @param  array  $binds 参数绑定
      * @return array
      */
-    protected function parseWhereLogic(Query $query, $logic, $val, $binds = [])
+    protected function parseWhereLogic(Query $query, $logic, array $val, array $binds = [])
     {
         $where = [];
         foreach ($val as $value) {
@@ -403,7 +403,7 @@ abstract class Builder
      * @param  array  $binds 参数绑定
      * @return string
      */
-    protected function parseFieldsAnd(Query $query, $value, $field, $logic, $binds)
+    protected function parseFieldsAnd(Query $query, $value, $field, $logic, array $binds)
     {
         $item = [];
 
@@ -424,7 +424,7 @@ abstract class Builder
      * @param  array  $binds 参数绑定
      * @return string
      */
-    protected function parseFieldsOr(Query $query, $value, $field, $logic, $binds)
+    protected function parseFieldsOr(Query $query, $value, $field, $logic, array $binds)
     {
         $item = [];
 
@@ -467,7 +467,7 @@ abstract class Builder
      * @param  array  $binds 参数绑定
      * @return string
      */
-    protected function parseMultiWhereField(Query $query, $value, $field, $logic, $binds)
+    protected function parseMultiWhereField(Query $query, $value, $field, $logic, array $binds)
     {
         array_unshift($value, $field);
 
@@ -488,7 +488,7 @@ abstract class Builder
      * @param  array $binds 参数绑定
      * @return string
      */
-    protected function parseWhereItem(Query $query, $field, $val, $binds = [])
+    protected function parseWhereItem(Query $query, $field, array $val, array $binds = [])
     {
         // 字段分析
         $key = $field ? $this->parseKey($query, $field, true) : '';
@@ -594,7 +594,7 @@ abstract class Builder
      * @param  integer $bindType
      * @return string
      */
-    protected function parseColumn(Query $query, $key, $exp, $value, $field, $bindType)
+    protected function parseColumn(Query $query, $key, $exp, array $value, $field, $bindType)
     {
         // 字段比较查询
         list($op, $field) = $value;
@@ -867,7 +867,7 @@ abstract class Builder
      * @param  array $join
      * @return string
      */
-    protected function parseJoin(Query $query, $join)
+    protected function parseJoin(Query $query, array $join)
     {
         $joinStr = '';
 
@@ -897,7 +897,7 @@ abstract class Builder
      * @param  array $order
      * @return string
      */
-    protected function parseOrder(Query $query, $order)
+    protected function parseOrder(Query $query, array $order)
     {
         $array = [];
         foreach ($order as $key => $val) {
@@ -965,7 +965,7 @@ abstract class Builder
      * @param  array  $val
      * @return string
      */
-    protected function parseOrderField(Query $query, $key, $val)
+    protected function parseOrderField(Query $query, $key, array $val)
     {
         if (isset($val['sort'])) {
             $sort = $val['sort'];
@@ -1057,7 +1057,7 @@ abstract class Builder
      * @param  array $union
      * @return string
      */
-    protected function parseUnion(Query $query, $union)
+    protected function parseUnion(Query $query, array $union)
     {
         if (empty($union)) {
             return '';
@@ -1190,7 +1190,7 @@ abstract class Builder
      * @param  array $dataSet 数据集
      * @return string
      */
-    public function insertAll(Query $query, $dataSet)
+    public function insertAll(Query $query, array $dataSet)
     {
         $options = $query->getOptions();
 
@@ -1243,7 +1243,7 @@ abstract class Builder
      * @param  string $table  数据表
      * @return string
      */
-    public function selectInsert(Query $query, $fields, $table)
+    public function selectInsert(Query $query, array $fields, $table)
     {
         foreach ($fields as &$field) {
             $field = $this->parseKey($query, $field, true);

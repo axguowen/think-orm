@@ -96,7 +96,7 @@ class Mongo
      * @param array $data 数据
      * @return array
      */
-    protected function parseData(Query $query, $data)
+    protected function parseData(Query $query, array $data)
     {
         if (empty($data)) {
             return [];
@@ -128,7 +128,7 @@ class Mongo
      * @param array $data 数据
      * @return array
      */
-    protected function parseSet(Query $query, $data)
+    protected function parseSet(Query $query, array $data)
     {
         if (empty($data)) {
             return [];
@@ -156,7 +156,7 @@ class Mongo
      * @param mixed $where
      * @return array
      */
-    public function parseWhere(Query $query, $where)
+    public function parseWhere(Query $query, array $where)
     {
         if (empty($where)) {
             $where = [];
@@ -393,7 +393,7 @@ class Mongo
      * @param array     $dataSet 数据集
      * @return BulkWrite
      */
-    public function insertAll(Query $query, $dataSet)
+    public function insertAll(Query $query, array $dataSet)
     {
         $bulk    = new BulkWrite;
         $options = $query->getOptions();
@@ -522,7 +522,7 @@ class Mongo
      * @param array     $extra  指令和字段
      * @return Command
      */
-    public function aggregate(Query $query, $extra)
+    public function aggregate(Query $query, array $extra)
     {
         $options       = $query->getOptions();
         list($fun, $field) = $extra;

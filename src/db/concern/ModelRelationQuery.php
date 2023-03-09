@@ -56,7 +56,7 @@ trait ModelRelationQuery
      * @param  array $hidden   属性列表
      * @return $this
      */
-    public function hidden($hidden = [])
+    public function hidden(array $hidden = [])
     {
         $this->options['hidden'] = $hidden;
 
@@ -69,7 +69,7 @@ trait ModelRelationQuery
      * @param  array $visible
      * @return $this
      */
-    public function visible($visible = [])
+    public function visible(array $visible = [])
     {
         $this->options['visible'] = $visible;
 
@@ -82,7 +82,7 @@ trait ModelRelationQuery
      * @param  array $append   属性列表
      * @return $this
      */
-    public function append($append = [])
+    public function append(array $append = [])
     {
         $this->options['append'] = $append;
 
@@ -130,7 +130,7 @@ trait ModelRelationQuery
      * @param array $relation 关联名称
      * @return $this
      */
-    public function relation($relation)
+    public function relation(array $relation)
     {
         if (empty($this->model) || empty($relation)) {
             return $this;
@@ -437,7 +437,7 @@ trait ModelRelationQuery
      * @param array $result  查询数据
      * @return void
      */
-    protected function jsonModelResult(&$result)
+    protected function jsonModelResult(array &$result)
     {
         $withAttr = $this->options['with_attr'];
         foreach ($this->options['json'] as $name) {
@@ -463,7 +463,7 @@ trait ModelRelationQuery
      * @param array $resultSet 数据集
      * @return ModelCollection
      */
-    protected function resultSetToModelCollection($resultSet)
+    protected function resultSetToModelCollection(array $resultSet)
     {
         if (empty($resultSet)) {
             return $this->model->toCollection();
@@ -499,7 +499,7 @@ trait ModelRelationQuery
      * @param array $result           查询数据
      * @return void
      */
-    protected function resultToModel(&$result)
+    protected function resultToModel(array &$result)
     {
         // JSON数据处理
         if (!empty($this->options['json'])) {

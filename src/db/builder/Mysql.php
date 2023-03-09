@@ -148,7 +148,7 @@ class Mysql extends Builder
      * @param  bool      $replace 是否replace
      * @return string
      */
-    public function insertAll(Query $query, $dataSet, $replace = false)
+    public function insertAll(Query $query, array $dataSet, $replace = false)
     {
         $options = $query->getOptions();
 

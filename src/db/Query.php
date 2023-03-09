@@ -30,7 +30,7 @@ class Query extends BaseQuery
      * @param array  $bind  参数绑定
      * @return $this
      */
-    public function orderRaw($field, $bind = [])
+    public function orderRaw($field, array $bind = [])
     {
         $this->options['order'][] = new Raw($field, $bind);
 
@@ -58,7 +58,7 @@ class Query extends BaseQuery
      * @param string $order  排序 desc/asc
      * @return $this
      */
-    public function orderField($field, $values, $order = '')
+    public function orderField($field, array $values, $order = '')
     {
         if (!empty($values)) {
             $values['sort'] = $order;
@@ -130,7 +130,7 @@ class Query extends BaseQuery
      * @param array $sql SQL批处理指令
      * @return bool
      */
-    public function batchQuery($sql = [])
+    public function batchQuery(array $sql = [])
     {
         return $this->connection->batchQuery($this, $sql);
     }

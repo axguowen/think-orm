@@ -28,7 +28,7 @@ trait JoinAndViewQuery
      * @param array  $bind      参数绑定
      * @return $this
      */
-    public function join($join, $condition = null, $type = 'INNER', $bind = [])
+    public function join($join, $condition = null, $type = 'INNER', array $bind = [])
     {
         $table = $this->getJoinTable($join);
 
@@ -49,7 +49,7 @@ trait JoinAndViewQuery
      * @param array $bind      参数绑定
      * @return $this
      */
-    public function leftJoin($join, $condition = null, $bind = [])
+    public function leftJoin($join, $condition = null, array $bind = [])
     {
         return $this->join($join, $condition, 'LEFT', $bind);
     }
@@ -62,7 +62,7 @@ trait JoinAndViewQuery
      * @param array $bind      参数绑定
      * @return $this
      */
-    public function rightJoin($join, $condition = null, $bind = [])
+    public function rightJoin($join, $condition = null, array $bind = [])
     {
         return $this->join($join, $condition, 'RIGHT', $bind);
     }
@@ -75,7 +75,7 @@ trait JoinAndViewQuery
      * @param array $bind      参数绑定
      * @return $this
      */
-    public function fullJoin($join, $condition = null, $bind = [])
+    public function fullJoin($join, $condition = null, array $bind = [])
     {
         return $this->join($join, $condition, 'FULL');
     }
@@ -137,7 +137,7 @@ trait JoinAndViewQuery
      * @param array        $bind  参数绑定
      * @return $this
      */
-    public function view($join, $field = true, $on = null, $type = 'INNER', $bind = [])
+    public function view($join, $field = true, $on = null, $type = 'INNER', array $bind = [])
     {
         $this->options['view'] = true;
 
@@ -187,7 +187,7 @@ trait JoinAndViewQuery
      * @param array $options 查询参数
      * @return void
      */
-    protected function parseView(&$options)
+    protected function parseView(array &$options)
     {
         foreach (['AND', 'OR'] as $logic) {
             if (isset($options['where'][$logic])) {

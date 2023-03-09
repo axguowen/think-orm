@@ -26,7 +26,7 @@ trait Transaction
      * @throws PDOException
      * @throws \Exception
      */
-    public function transactionXa($callback, $dbs = [])
+    public function transactionXa($callback, array $dbs = [])
     {
         return $this->connection->transactionXa($callback, $dbs);
     }

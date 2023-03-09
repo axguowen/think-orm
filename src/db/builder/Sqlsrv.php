@@ -63,7 +63,7 @@ class Sqlsrv extends Builder
      * @param  mixed     $order
      * @return string
      */
-    protected function parseOrder(Query $query, $order)
+    protected function parseOrder(Query $query, array $order)
     {
         if (empty($order)) {
             return ' ORDER BY rand()';
@@ -174,7 +174,7 @@ class Sqlsrv extends Builder
         return 'WHERE ' . $limitStr;
     }
 
-    public function selectInsert(Query $query, $fields, $table)
+    public function selectInsert(Query $query, array $fields, $table)
     {
         $this->selectSql = $this->selectInsertSql;
 

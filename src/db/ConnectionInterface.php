@@ -47,7 +47,7 @@ interface ConnectionInterface
      * @param integer $linkNum 连接序号
      * @return mixed
      */
-    public function connect($config = [], $linkNum = 0);
+    public function connect(array $config = [], $linkNum = 0);
 
     /**
      * 设置当前的数据库Db对象
@@ -112,7 +112,7 @@ interface ConnectionInterface
      * @param mixed   $dataSet 数据集
      * @return integer
      */
-    public function insertAll(BaseQuery $query, $dataSet = []);
+    public function insertAll(BaseQuery $query, array $dataSet = []);
 
     /**
      * 更新记录

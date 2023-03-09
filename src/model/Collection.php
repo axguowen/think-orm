@@ -63,7 +63,7 @@ class Collection extends BaseCollection
      * @param array $allowField 允许字段
      * @return bool
      */
-    public function update($data, $allowField = [])
+    public function update(array $data, array $allowField = [])
     {
         $this->each(function (Model $model) use ($data, $allowField) {
             if (!empty($allowField)) {
@@ -83,7 +83,7 @@ class Collection extends BaseCollection
      * @param  bool  $merge  是否合并
      * @return $this
      */
-    public function hidden($hidden, $merge = false)
+    public function hidden(array $hidden, $merge = false)
     {
         $this->each(function (Model $model) use ($hidden, $merge) {
             $model->hidden($hidden, $merge);
@@ -99,7 +99,7 @@ class Collection extends BaseCollection
      * @param  bool  $merge    是否合并
      * @return $this
      */
-    public function visible($visible, $merge = false)
+    public function visible(array $visible, $merge = false)
     {
         $this->each(function (Model $model) use ($visible, $merge) {
             $model->visible($visible, $merge);
@@ -115,7 +115,7 @@ class Collection extends BaseCollection
      * @param  bool  $merge  是否合并
      * @return $this
      */
-    public function append($append, $merge = false)
+    public function append(array $append, $merge = false)
     {
         $this->each(function (Model $model) use ($append, $merge) {
             $model->append($append, $merge);
@@ -178,7 +178,7 @@ class Collection extends BaseCollection
      * @return $this
      * @throws Exception
      */
-    public function bindAttr($relation, $attrs = [])
+    public function bindAttr($relation, array $attrs = [])
     {
         $this->each(function (Model $model) use ($relation, $attrs) {
             $model->bindAttr($relation, $attrs);
